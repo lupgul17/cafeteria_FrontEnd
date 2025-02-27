@@ -14,19 +14,19 @@ export const obtenerAlumno = async (id) => {
 };
 
 // Registrar consumo
-export const registrarConsumo = async ({ id_alumno, id_paquete }) => {
+export const registrarConsumo = async (id_alumno, id_paquete) => {
     try {
         const response = await axios.post(
             "https://cafeteriabackend-prueba.up.railway.app/registrar_consumo",
             {
-                id_alumno,
+                id_alumno,  // No debe estar anidado
                 id_paquete,
                 fecha: new Date().toISOString().split("T")[0] // Fecha actual en formato YYYY-MM-DD
             }
         );
         return response.data;
     } catch (error) {
-        console.error("Error registrando consumo:", error);
+        console.error("❌ Error registrando consumo:", error);
         return null;
     }
 };
