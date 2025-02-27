@@ -23,7 +23,7 @@ function QRScanner() {
                 setAlumno(datosAlumno);
 
                 if (datosAlumno) {
-                    const registrado = await registrarConsumo(idAlumno);
+                    const registrado = await registrarConsumo({ id_alumno: idAlumno });
                     if (registrado) {
                         alert(`✅ Consumo registrado para ${datosAlumno.nombre} ${datosAlumno.apellido}`);
                     } else {
@@ -54,3 +54,6 @@ function QRScanner() {
 }
 
 export default QRScanner;
+
+
+
