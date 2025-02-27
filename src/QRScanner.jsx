@@ -16,7 +16,7 @@ function QRScanner() {
         scanner.render(
             async (data) => {
                 scanner.clear();
-                const idAlumno = data.split("/").pop();
+                const idAlumno = parseInt(data.split("/").pop()); // Convertir a número
                 setScanResult(idAlumno);
 
                 // Obtener datos del alumno
@@ -24,8 +24,11 @@ function QRScanner() {
                 if (datosAlumno && datosAlumno.nombre) {
                     setAlumno(datosAlumno);
 
-                    // Registrar el consumo
-                    const registrado = await registrarConsumo({ id_alumno: idAlumno });
+                    // Aquí obtenemos el paquete asociado al alumno (ejemplo: paquete fijo o asignado en BD)
+                    const idPaquete = 1;  // 👈 Asegúrate de tener el id del paquete
+
+                    // Registrar el consumo con los valores correctos
+                    const registrado = await registrarConsumo(idAlumno, idPaquete);
                     if (registrado) {
                         alert(`✅ Consumo registrado para ${datosAlumno.nombre} ${datosAlumno.apellido}`);
                     } else {
