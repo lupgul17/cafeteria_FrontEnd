@@ -1,14 +1,14 @@
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:5000"; // URL del backend Flask
+const API_URL = "https://cafeteriabackend-prueba.up.railway.app"; // Backend en Railway
 
-export const obtenerAlumno = async (id) => {
+export const obtenerAlumnos = async () => {
     try {
-        const response = await axios.get(`${API_URL}/alumno/${id}`);
+        const response = await axios.get(`${API_URL}/alumnos`);
         return response.data;
     } catch (error) {
-        console.error("Error obteniendo datos del alumno:", error);
-        return null;
+        console.error("Error obteniendo alumnos:", error);
+        return [];
     }
 };
 
