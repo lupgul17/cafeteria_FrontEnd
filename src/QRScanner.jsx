@@ -19,16 +19,20 @@ function QRScanner() {
                 const idAlumno = data.split("/").pop();
                 setScanResult(idAlumno);
 
+                // Obtener datos del alumno
                 const datosAlumno = await obtenerAlumno(idAlumno);
-                setAlumno(datosAlumno);
+                if (datosAlumno && datosAlumno.nombre) {
+                    setAlumno(datosAlumno);
 
-                if (datosAlumno) {
+                    // Registrar el consumo
                     const registrado = await registrarConsumo({ id_alumno: idAlumno });
                     if (registrado) {
                         alert(`✅ Consumo registrado para ${datosAlumno.nombre} ${datosAlumno.apellido}`);
                     } else {
                         alert("❌ Error registrando el consumo.");
                     }
+                } else {
+                    alert("⚠️ No se encontró información del alumno.");
                 }
             },
             (err) => console.error(err)
@@ -54,6 +58,3 @@ function QRScanner() {
 }
 
 export default QRScanner;
-
-
-
