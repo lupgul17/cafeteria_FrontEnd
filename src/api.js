@@ -19,9 +19,9 @@ export const registrarConsumo = async (id_alumno, id_paquete) => {
         const response = await axios.post(
             "https://cafeteriabackend-prueba.up.railway.app/registrar_consumo",
             {
-                id_alumno,  // No debe estar anidado
-                id_paquete,
-                fecha: new Date().toISOString().split("T")[0] // Fecha actual en formato YYYY-MM-DD
+                id_alumno: Number(id_alumno),  // 👈 Convertir a número si viene como string
+                id_paquete: Number(id_paquete),  // 👈 Agregar id_paquete correctamente
+                fecha: new Date().toISOString().split("T")[0] // 📅 Fecha actual en formato YYYY-MM-DD
             }
         );
         return response.data;
@@ -30,3 +30,4 @@ export const registrarConsumo = async (id_alumno, id_paquete) => {
         return null;
     }
 };
+
